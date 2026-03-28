@@ -210,7 +210,7 @@ function VideoPanel({
               ? "bg-white/90 text-neutral-900"
               : "bg-white/10 text-white"
           }`}
-          style={{ fontFamily: "var(--font-archy), sans-serif" }}
+          style={{ fontFamily: "var(--font-gordeziani), sans-serif" }}
         >
           {overlay.ctaLabel}
           <svg
