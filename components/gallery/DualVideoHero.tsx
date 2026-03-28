@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface VideoOverlay {
   title: string;
@@ -20,19 +20,32 @@ function VideoPanel({
   videoSrc,
   overlay,
   preload,
-  delay = 0,
+  onReady,
 }: {
   videoSrc: string;
   overlay: VideoOverlay;
   preload: "auto" | "metadata";
-  delay?: number;
+  onReady?: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    videoRef.current?.play().catch(() => {});
-  }, []);
+    const vid = videoRef.current;
+    if (!vid) return;
+
+    const handleCanPlay = () => {
+      vid.play().catch(() => {});
+      onReady?.();
+    };
+
+    if (vid.readyState >= 3) {
+      handleCanPlay();
+    } else {
+      vid.addEventListener("canplay", handleCanPlay, { once: true });
+      return () => vid.removeEventListener("canplay", handleCanPlay);
+    }
+  }, [onReady]);
 
   return (
     <a
@@ -55,28 +68,14 @@ function VideoPanel({
       <div className="absolute inset-0 bg-black/15" />
 
       <div className="absolute top-[55%] left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center">
-        <motion.div
-          className="w-full"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut", delay }}
-        >
-          <div className="w-full bg-white/10 backdrop-blur-md px-4 md:px-6 py-1.5">
-            <h2 className="text-center text-sm md:text-base lg:text-lg font-medium text-white tracking-tight">
-              {overlay.title}
-            </h2>
-          </div>
-        </motion.div>
+        <div className="w-full bg-white/10 backdrop-blur-md px-4 md:px-6 py-1.5">
+          <h2 className="text-center text-sm md:text-base lg:text-lg font-medium text-white tracking-tight">
+            {overlay.title}
+          </h2>
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: "easeOut", delay: delay + 0.2 }}
-        className="absolute bottom-10 md:bottom-16 lg:bottom-20 left-0 right-0 flex justify-center z-10 pointer-events-none"
-      >
+      <div className="absolute bottom-10 md:bottom-16 lg:bottom-20 left-0 right-0 flex justify-center z-10 pointer-events-none">
         <span
           className={`inline-flex items-center justify-center gap-2 md:gap-3 px-5 md:px-8 py-2.5 md:py-3 backdrop-blur-md text-base md:text-xl lg:text-2xl tracking-tight transition-all duration-300 ${
             hovered
@@ -101,7 +100,7 @@ function VideoPanel({
             />
           </svg>
         </span>
-      </motion.div>
+      </div>
     </a>
   );
 }
@@ -112,26 +111,43 @@ export default function DualVideoHero({
   overlayLeft,
   overlayRight,
 }: DualVideoHeroProps) {
+  const [ready, setReady] = useState(false);
+
+  const onVideoReady = useCallback(() => {
+    setReady(true);
+  }, []);
+
   return (
     <section data-nav-theme="light" className="relative flex flex-col md:flex-row w-full h-[200vh] md:h-screen bg-black">
       <VideoPanel
         videoSrc={videoLeft}
         overlay={overlayLeft}
         preload="auto"
-        delay={0.3}
+        onReady={onVideoReady}
       />
       <VideoPanel
         videoSrc={videoRight}
         overlay={overlayRight}
-        preload="metadata"
-        delay={0.5}
+        preload="auto"
+        onReady={onVideoReady}
       />
+
+      {/* Loading cover — hides staggered loading, fades out once video is ready */}
+      <AnimatePresence>
+        {!ready && (
+          <motion.div
+            className="absolute inset-0 z-30 bg-black"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Desktop: split across video seam */}
       <motion.div
         className="absolute top-24 left-0 right-0 z-20 pointer-events-none hidden md:block"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
       >
         <div className="flex justify-center">
@@ -162,7 +178,7 @@ export default function DualVideoHero({
       <motion.div
         className="absolute top-20 left-0 right-0 z-20 pointer-events-none md:hidden"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
       >
         <h1 className="text-3xl font-medium tracking-tight text-center">
