@@ -126,14 +126,17 @@ export default function DualVideoHero({
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
       >
         <div className="flex justify-center">
-          <h1
-            className="text-6xl lg:text-7xl font-medium tracking-tight flex text-white/75"
-            style={{ textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
-          >
-            <span className="text-right" style={{ width: "50vw", paddingRight: "0.15em" }}>
+          <h1 className="text-6xl lg:text-7xl font-medium tracking-tight flex">
+            <span
+              className="text-right text-white/75"
+              style={{ width: "50vw", paddingRight: "0.15em", textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
+            >
               Expo
             </span>
-            <span className="text-left" style={{ width: "50vw", paddingLeft: "0.15em" }}>
+            <span
+              className="text-left text-black/75"
+              style={{ width: "50vw", paddingLeft: "0.15em", textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
+            >
               Home
             </span>
           </h1>
@@ -153,11 +156,19 @@ export default function DualVideoHero({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
       >
-        <h1
-          className="text-3xl font-medium tracking-tight text-center text-white/75"
-          style={{ textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
-        >
-          Expo Home
+        <h1 className="text-3xl font-medium tracking-tight text-center">
+          <span
+            className="text-white/75"
+            style={{ textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
+          >
+            Expo
+          </span>{" "}
+          <span
+            className="text-black/75"
+            style={{ textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
+          >
+            Home
+          </span>
         </h1>
         <p
           className="mt-2 text-xs tracking-tight text-center text-white/75"
