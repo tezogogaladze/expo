@@ -179,13 +179,8 @@ export default function DualVideoHero({
   overlayRight,
 }: DualVideoHeroProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [minTimePassed, setMinTimePassed] = useState(false);
-  const ready = videoLoaded && minTimePassed;
-
-  useEffect(() => {
-    const timer = setTimeout(() => setMinTimePassed(true), 1800);
-    return () => clearTimeout(timer);
-  }, []);
+  const [lineComplete, setLineComplete] = useState(false);
+  const ready = videoLoaded && lineComplete;
 
   const onVideoReady = useCallback(() => {
     setVideoLoaded(true);
@@ -221,12 +216,22 @@ export default function DualVideoHero({
                 backgroundColor: "rgba(0,0,0,0.12)",
                 boxShadow: "0 0 12px rgba(0,0,0,0.03)",
               }}
-              animate={{
+              animate={videoLoaded ? {
                 height: "100vh",
                 backgroundColor: "rgba(0,0,0,0.25)",
                 boxShadow: "0 0 30px rgba(0,0,0,0.06)",
+              } : {
+                height: "40vh",
+                backgroundColor: "rgba(0,0,0,0.18)",
+                boxShadow: "0 0 20px rgba(0,0,0,0.04)",
               }}
-              transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+              transition={videoLoaded
+                ? { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+                : { duration: 4, ease: "easeInOut" }
+              }
+              onAnimationComplete={() => {
+                if (videoLoaded) setLineComplete(true);
+              }}
             />
           </motion.div>
         )}
