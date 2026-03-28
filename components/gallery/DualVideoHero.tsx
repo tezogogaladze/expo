@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 interface VideoOverlay {
@@ -28,13 +28,18 @@ function VideoPanel({
   delay?: number;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     videoRef.current?.play().catch(() => {});
   }, []);
 
   return (
-    <div className="relative w-full md:w-1/2 h-screen md:h-full overflow-hidden">
+    <div
+      className="relative w-full md:w-1/2 h-screen md:h-full overflow-hidden"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <video
         ref={videoRef}
         src={videoSrc}
@@ -73,7 +78,11 @@ function VideoPanel({
       >
         <a
           href={overlay.ctaHref}
-          className="inline-flex items-center justify-center gap-2 md:gap-3 px-5 md:px-8 py-2.5 md:py-3 bg-white/10 backdrop-blur-md text-white text-base md:text-xl lg:text-2xl tracking-tight transition-opacity duration-300 hover:opacity-70"
+          className={`inline-flex items-center justify-center gap-2 md:gap-3 px-5 md:px-8 py-2.5 md:py-3 backdrop-blur-md text-base md:text-xl lg:text-2xl tracking-tight transition-all duration-300 ${
+            hovered
+              ? "bg-white/90 text-neutral-900"
+              : "bg-white/10 text-white"
+          }`}
         >
           {overlay.ctaLabel}
           <svg
@@ -81,7 +90,7 @@ function VideoPanel({
             height="14"
             viewBox="0 0 14 14"
             fill="none"
-            className="text-white/60"
+            className={`transition-colors duration-300 ${hovered ? "text-neutral-900/60" : "text-white/60"}`}
           >
             <path
               d="M1 7h12m0 0L8 2.5M13 7l-5 4.5"
