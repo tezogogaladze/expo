@@ -87,33 +87,21 @@ function GlassTextMobile({
   return (
     <svg
       className={`absolute top-0 left-0 w-full pointer-events-none select-none ${className ?? ""}`}
-      style={{ height: "calc(5rem + 15vw * 1.1)" }}
+      style={{ height: "calc(5rem + 12vw * 1.1)" }}
     >
       <defs>
         <clipPath id="expo-text-clip-mobile">
           <text
-            x="47%"
+            x="50%"
             y="72%"
-            textAnchor="end"
+            textAnchor="middle"
             dominantBaseline="middle"
-            fontSize="15vw"
+            fontSize="12vw"
             fontWeight="500"
             fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
             letterSpacing="-0.025em"
           >
-            Expo
-          </text>
-          <text
-            x="97%"
-            y="72%"
-            textAnchor="end"
-            dominantBaseline="middle"
-            fontSize="15vw"
-            fontWeight="500"
-            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
-            letterSpacing="-0.025em"
-          >
-            Home
+            Expo Home
           </text>
         </clipPath>
       </defs>
@@ -189,10 +177,7 @@ function VideoPanel({
 
       <div className="absolute inset-0 bg-black/15" />
 
-      <div
-        className="absolute left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center"
-        style={{ top: "calc(50% + 1rem + 6vw)" }}
-      >
+      <div className="absolute left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center top-[55%] md:top-[calc(50%_+_1rem_+_6vw)]">
         <div className="w-full bg-white/10 backdrop-blur-md px-4 md:px-6 py-1.5">
           <h2
             className="text-center text-sm md:text-base lg:text-lg font-light text-white tracking-tight"
@@ -269,9 +254,10 @@ export default function DualVideoHero({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none w-full flex justify-between px-[3%]">
-              <span className="text-right" style={{ width: "47%" }}>Expo</span>
-              <span className="text-right" style={{ width: "50%" }}>Home</span>
+            <h1 className="text-[12vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none w-full text-center md:text-left md:flex md:justify-between md:px-[3%]">
+              <span className="hidden md:inline text-right" style={{ width: "47%" }}>Expo</span>
+              <span className="hidden md:inline text-right" style={{ width: "50%" }}>Home</span>
+              <span className="md:hidden">Expo Home</span>
             </h1>
           </motion.div>
         )}
