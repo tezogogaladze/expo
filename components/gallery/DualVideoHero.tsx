@@ -158,13 +158,13 @@ export default function DualVideoHero({
       >
         <h1 className="text-3xl font-medium tracking-tight text-center">
           <span
-            className="text-white/75"
+            className="text-white/50"
             style={{ textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
           >
             Expo
           </span>{" "}
           <span
-            className="text-black/75"
+            className="text-black/50"
             style={{ textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
           >
             Home
