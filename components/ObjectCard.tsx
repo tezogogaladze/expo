@@ -20,8 +20,10 @@ export default function ObjectCard({ title, subtitle, image }: ObjectCardProps) 
         />
       </div>
       <div className="mt-5">
-        <h3 className="text-lg tracking-tight">{title}</h3>
-        <p className="mt-1 text-sm text-neutral-500">{subtitle}</p>
+        <h3 className="font-[family-name:var(--font-heading)] text-xl md:text-2xl font-light tracking-tight">
+          {title}
+        </h3>
+        <p className="mt-1.5 text-sm text-neutral-500">{subtitle}</p>
       </div>
     </div>
   );

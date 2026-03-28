@@ -17,7 +17,8 @@
 }
 
 @theme inline {
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: var(--font-cormorant), "Georgia", serif;
   --font-mkafio: "GL Mkafio", sans-serif;
   --font-gordeziani: "GL Gordeziani", sans-serif;
 }
@@ -29,7 +30,7 @@ html {
 body {
   background: #ffffff;
   color: #111111;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

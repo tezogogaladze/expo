@@ -117,10 +117,10 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <div className="max-w-sm">
-              <h2 className="text-2xl font-light tracking-tight">
+              <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-light italic tracking-tight">
                 Objects, not furniture
               </h2>
-              <p className="mt-6 text-neutral-500 leading-relaxed">
+              <p className="mt-6 text-neutral-500 leading-relaxed text-sm md:text-base">
                 We work with designers who treat material as language — chrome
                 as liquid, foam as landscape, glass as atmosphere. Each piece
                 is selected for its sculptural presence.
@@ -135,14 +135,14 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-start">
             <FadeIn>
               <div>
-                <h2 className="text-2xl font-light tracking-tight">Visit</h2>
+                <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-light italic tracking-tight">Visit</h2>
                 <div className="mt-8 space-y-4">
-                  <p className="text-neutral-500 leading-relaxed">
+                  <p className="text-sm md:text-base text-neutral-500 leading-relaxed">
                     Tuesday — Saturday
                     <br />
                     11:00 — 19:00
                   </p>
-                  <p className="text-neutral-500 leading-relaxed">
+                  <p className="text-sm md:text-base text-neutral-500 leading-relaxed">
                     მიხეილ წინამძღვრიშვილის 125ა
                     <br />
                     Tbilisi, Georgia

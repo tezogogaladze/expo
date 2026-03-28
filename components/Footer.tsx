@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
           <div>
             <p className="text-sm font-medium tracking-tight">Expo Home</p>
-            <p className="mt-2 text-sm text-neutral-500">
+            <p className="mt-2 text-xs text-neutral-400">
               Tbilisi, Georgia
             </p>
           </div>
@@ -17,7 +17,7 @@ export default function Footer() {
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+                className="text-xs tracking-wide text-neutral-400 hover:text-neutral-900 transition-colors"
               >
                 {link}
               </a>
@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="mt-10 md:mt-16 text-xs text-neutral-400">
+        <p className="mt-10 md:mt-16 text-xs text-neutral-300">
           &copy; {new Date().getFullYear()} Expo Home
         </p>
       </div>
