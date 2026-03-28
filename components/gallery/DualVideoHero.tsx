@@ -190,7 +190,7 @@ function VideoPanel({
 
       <div className="absolute bottom-6 md:bottom-10 lg:bottom-14 left-0 right-0 flex justify-center z-10 pointer-events-none">
         <span
-          className={`inline-flex items-center justify-center gap-2 md:gap-3 px-8 md:px-14 py-1.5 md:py-2 backdrop-blur-md text-lg md:text-2xl lg:text-3xl tracking-tight transition-all duration-300 ${
+          className={`inline-flex items-center justify-center gap-2 md:gap-3 px-7 md:px-12 py-1.5 md:py-2 backdrop-blur-md text-lg md:text-2xl lg:text-3xl tracking-tight transition-all duration-300 ${
             hovered
               ? "bg-white/90 text-neutral-900"
               : "bg-white/10 text-white"
