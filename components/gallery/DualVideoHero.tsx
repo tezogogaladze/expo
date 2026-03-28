@@ -199,19 +199,20 @@ export default function DualVideoHero({
         onReady={onVideoReady}
       />
 
-      {/* Loading cover — white, fades out once video is ready */}
+      {/* Loading cover — white with expanding line */}
       <AnimatePresence>
         {!ready && (
           <motion.div
-            className="absolute inset-0 z-30 bg-white flex items-start justify-center pt-20 md:pt-24"
+            className="absolute inset-0 z-30 bg-white flex items-center justify-center"
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h1 className="text-[12vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none w-full text-center md:text-left md:flex md:justify-between md:px-[3%]">
-              <span className="hidden md:inline text-right" style={{ width: "47%" }}>Expo</span>
-              <span className="hidden md:inline text-right" style={{ width: "50%" }}>Home</span>
-              <span className="md:hidden">Expo Home</span>
-            </h1>
+            <motion.div
+              className="h-px bg-neutral-300"
+              initial={{ width: "24px" }}
+              animate={{ width: "30vw" }}
+              transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
