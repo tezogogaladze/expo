@@ -1,65 +1,181 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import MinimalNav from "@/components/MinimalNav";
+import DualVideoHero from "@/components/gallery/DualVideoHero";
+import NarrativeSection from "@/components/gallery/NarrativeSection";
+import ObjectCard from "@/components/ObjectCard";
+import FadeIn from "@/components/FadeIn";
+import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Expo Home — Multi-Brand Furniture Store",
+  description:
+    "Multi-brand furniture showroom in Tbilisi, Georgia. Curated collections from leading contemporary designers.",
+};
+
+const selectedObjects = [
+  {
+    title: "Platner Lounge Chair",
+    subtitle: "Warren Platner — Knoll",
+    image: "/images/platner-chairs.png",
+  },
+  {
+    title: "Crushed Metal Vases",
+    subtitle: "Polished stainless steel — Set of three",
+    image: "/images/chrome-vases.png",
+  },
+  {
+    title: "Utrecht Armchair",
+    subtitle: "Gerrit Rietveld — Cassina",
+    image: "/images/orange-utrecht-chairs.png",
+  },
+  {
+    title: "Ekstrem Chair",
+    subtitle: "Terje Ekstrøm — Stokke",
+    image: "/images/ekstrem-chairs.png",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      <MinimalNav />
+
+      <DualVideoHero
+        videoLeft="/videos/hero-1.mp4"
+        videoRight="/videos/hero-2.mp4"
+        overlayLeft={{
+          title: "მიხეილ წინამძღვრიშვილის 125ა",
+          ctaLabel: "ეწვიე შოურუმს",
+          ctaHref: "#visit",
+        }}
+        overlayRight={{
+          title: "შერჩეული კოლექცია",
+          ctaLabel: "დაათვალიერე",
+          ctaHref: "#collection",
+        }}
+      />
+
+      <NarrativeSection
+        title="A curated selection of contemporary furniture and collectible design"
+        text="Each object is chosen for its material integrity and sculptural presence. The showroom operates as a gallery — a space where furniture exists as art, not commodity."
+      />
+
+      <FadeIn>
+        <section data-nav-theme="light" className="relative w-full">
+          <div className="aspect-[4/3] md:aspect-[21/9] overflow-hidden">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/images/gallery-chrome-chairs.png"
+              alt="Chrome chairs in the Expo Home showroom"
+              width={2400}
+              height={1028}
+              quality={90}
+              className="h-full w-full object-cover"
+              sizes="100vw"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12 mt-6">
+            <p className="text-xs text-neutral-400">
+              Chrome lounge chairs — ground floor
+            </p>
+          </div>
+        </section>
+      </FadeIn>
+
+      <section id="collection" data-nav-theme="dark" className="max-w-[1400px] mx-auto px-6 lg:px-12 py-20 md:py-32 lg:py-40">
+        <FadeIn>
+          <p className="text-xs text-neutral-400 tracking-widest uppercase mb-12 md:mb-20">
+            Selected pieces
+          </p>
+        </FadeIn>
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-24">
+          {selectedObjects.map((obj, i) => (
+            <FadeIn key={obj.title} delay={i * 0.08}>
+              <ObjectCard
+                title={obj.title}
+                subtitle={obj.subtitle}
+                image={obj.image}
+              />
+            </FadeIn>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section data-nav-theme="dark" className="max-w-[1400px] mx-auto px-6 lg:px-12 py-20 md:py-32">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
+          <FadeIn>
+            <div className="aspect-[3/4] overflow-hidden">
+              <Image
+                src="/images/mirror-red-bench.png"
+                alt="Chrome mirror and red lacquer bench"
+                width={700}
+                height={933}
+                className="h-full w-full object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="max-w-sm">
+              <h2 className="text-2xl font-light tracking-tight">
+                Objects, not furniture
+              </h2>
+              <p className="mt-6 text-neutral-500 leading-relaxed">
+                We work with designers who treat material as language — chrome
+                as liquid, foam as landscape, glass as atmosphere. Each piece
+                is selected for its sculptural presence.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section id="visit" data-nav-theme="dark" className="py-20 md:py-32 lg:py-40">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-start">
+            <FadeIn>
+              <div>
+                <h2 className="text-2xl font-light tracking-tight">Visit</h2>
+                <div className="mt-8 space-y-4">
+                  <p className="text-neutral-500 leading-relaxed">
+                    Tuesday — Saturday
+                    <br />
+                    11:00 — 19:00
+                  </p>
+                  <p className="text-neutral-500 leading-relaxed">
+                    მიხეილ წინამძღვრიშვილის 125ა
+                    <br />
+                    Tbilisi, Georgia
+                  </p>
+                  <a
+                    href="mailto:hello@expohome.ge"
+                    className="inline-block mt-4 text-sm text-neutral-900 underline underline-offset-4 hover:opacity-60 transition-opacity"
+                  >
+                    hello@expohome.ge
+                  </a>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div className="aspect-square md:aspect-[4/3] w-full overflow-hidden bg-neutral-100">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.089622836314!2d44.791907476606774!3d41.718584875385616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440d003e33198f%3A0xf4041662351d926!2sExpo%20Home!5e0!3m2!1sen!2sge!4v1774712205877!5m2!1sen!2sge"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
 }
