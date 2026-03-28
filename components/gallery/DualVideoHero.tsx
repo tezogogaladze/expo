@@ -33,7 +33,7 @@ function GlassText({
       <defs>
         <clipPath id="expo-text-clip-desktop">
           <text
-            x="49.5%"
+            x="47%"
             y="72%"
             textAnchor="end"
             dominantBaseline="middle"
@@ -92,7 +92,7 @@ function GlassTextMobile({
       <defs>
         <clipPath id="expo-text-clip-mobile">
           <text
-            x="49.5%"
+            x="47%"
             y="72%"
             textAnchor="end"
             dominantBaseline="middle"
@@ -194,7 +194,10 @@ function VideoPanel({
         style={{ top: "calc(50% + 1rem + 6vw)" }}
       >
         <div className="w-full bg-white/10 backdrop-blur-md px-4 md:px-6 py-1.5">
-          <h2 className="text-center text-sm md:text-base lg:text-lg font-medium text-white tracking-tight">
+          <h2
+            className="text-center text-sm md:text-base lg:text-lg font-light text-white tracking-tight"
+            style={{ fontFamily: "var(--font-mkafio), sans-serif" }}
+          >
             {overlay.title}
           </h2>
         </div>
@@ -267,7 +270,7 @@ export default function DualVideoHero({
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none w-full flex justify-between px-[3%]">
-              <span className="text-right" style={{ width: "50%", paddingRight: "0.5%" }}>Expo</span>
+              <span className="text-right" style={{ width: "47%" }}>Expo</span>
               <span className="text-right" style={{ width: "50%" }}>Home</span>
             </h1>
           </motion.div>

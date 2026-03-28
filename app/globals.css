@@ -8,9 +8,18 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "GL Mkafio";
+  src: url("/fonts/gl-mkafio-light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme inline {
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-archy: "AR Archy", sans-serif;
+  --font-mkafio: "GL Mkafio", sans-serif;
 }
 
 html {
