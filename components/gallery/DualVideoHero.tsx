@@ -128,14 +128,14 @@ export default function DualVideoHero({
         <div className="flex justify-center">
           <h1 className="text-6xl lg:text-7xl font-medium tracking-tight flex">
             <span
-              className="text-right text-white/75"
-              style={{ width: "50vw", paddingRight: "0.15em", textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
+              className="text-right"
+              style={{ width: "50vw", paddingRight: "0.15em", color: "rgba(209,73,157,0.5)", textShadow: "0 0 20px rgba(209,73,157,0.15), 0 0 60px rgba(209,73,157,0.05)" }}
             >
               Expo
             </span>
             <span
-              className="text-left text-black/75"
-              style={{ width: "50vw", paddingLeft: "0.15em", textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
+              className="text-left"
+              style={{ width: "50vw", paddingLeft: "0.15em", color: "rgba(1,75,126,0.5)", textShadow: "0 0 20px rgba(1,75,126,0.15), 0 0 60px rgba(1,75,126,0.05)" }}
             >
               Home
             </span>
@@ -158,14 +158,12 @@ export default function DualVideoHero({
       >
         <h1 className="text-3xl font-medium tracking-tight text-center">
           <span
-            className="text-white/50"
-            style={{ textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
+            style={{ color: "rgba(209,73,157,0.5)", textShadow: "0 0 20px rgba(209,73,157,0.15), 0 0 60px rgba(209,73,157,0.05)" }}
           >
             Expo
           </span>{" "}
           <span
-            className="text-black/50"
-            style={{ textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
+            style={{ color: "rgba(1,75,126,0.5)", textShadow: "0 0 20px rgba(1,75,126,0.15), 0 0 60px rgba(1,75,126,0.05)" }}
           >
             Home
           </span>
