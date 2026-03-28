@@ -206,19 +206,27 @@ export default function DualVideoHero({
         onReady={onVideoReady}
       />
 
-      {/* Loading cover — white with expanding line */}
+      {/* Loading cover — white with expanding vertical line */}
       <AnimatePresence>
         {!ready && (
           <motion.div
             className="absolute inset-0 z-30 bg-white flex items-center justify-center"
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.div
-              className="w-px bg-neutral-300"
-              initial={{ height: "24px" }}
-              animate={{ height: "30vh" }}
-              transition={{ duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+              className="w-[2.5px] rounded-full"
+              initial={{
+                height: "20px",
+                backgroundColor: "rgba(0,0,0,0.12)",
+                boxShadow: "0 0 12px rgba(0,0,0,0.03)",
+              }}
+              animate={{
+                height: "100vh",
+                backgroundColor: "rgba(0,0,0,0.25)",
+                boxShadow: "0 0 30px rgba(0,0,0,0.06)",
+              }}
+              transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
             />
           </motion.div>
         )}
