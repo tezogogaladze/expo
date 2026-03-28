@@ -35,8 +35,9 @@ function VideoPanel({
   }, []);
 
   return (
-    <div
-      className="relative w-full md:w-1/2 h-screen md:h-full overflow-hidden"
+    <a
+      href={overlay.ctaHref}
+      className="relative w-full md:w-1/2 h-screen md:h-full overflow-hidden block cursor-pointer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -74,10 +75,9 @@ function VideoPanel({
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: delay + 0.2 }}
-        className="absolute bottom-10 md:bottom-16 lg:bottom-20 left-0 right-0 flex justify-center z-10"
+        className="absolute bottom-10 md:bottom-16 lg:bottom-20 left-0 right-0 flex justify-center z-10 pointer-events-none"
       >
-        <a
-          href={overlay.ctaHref}
+        <span
           className={`inline-flex items-center justify-center gap-2 md:gap-3 px-5 md:px-8 py-2.5 md:py-3 backdrop-blur-md text-base md:text-xl lg:text-2xl tracking-tight transition-all duration-300 ${
             hovered
               ? "bg-white/90 text-neutral-900"
@@ -100,9 +100,9 @@ function VideoPanel({
               strokeLinejoin="round"
             />
           </svg>
-        </a>
+        </span>
       </motion.div>
-    </div>
+    </a>
   );
 }
 
@@ -137,14 +137,14 @@ export default function DualVideoHero({
         <div className="flex justify-center">
           <h1 className="text-6xl lg:text-7xl font-medium tracking-tight flex">
             <span
-              className="text-right"
-              style={{ width: "50vw", paddingRight: "0.15em", color: "rgba(209,73,157,0.5)", textShadow: "0 0 20px rgba(209,73,157,0.15), 0 0 60px rgba(209,73,157,0.05)" }}
+              className="text-right text-white/50"
+              style={{ width: "50vw", paddingRight: "0.15em", textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
             >
               Expo
             </span>
             <span
-              className="text-left"
-              style={{ width: "50vw", paddingLeft: "0.15em", color: "rgba(1,75,126,0.5)", textShadow: "0 0 20px rgba(1,75,126,0.15), 0 0 60px rgba(1,75,126,0.05)" }}
+              className="text-left text-black/50"
+              style={{ width: "50vw", paddingLeft: "0.15em", textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
             >
               Home
             </span>
@@ -167,12 +167,14 @@ export default function DualVideoHero({
       >
         <h1 className="text-3xl font-medium tracking-tight text-center">
           <span
-            style={{ color: "rgba(209,73,157,0.5)", textShadow: "0 0 20px rgba(209,73,157,0.15), 0 0 60px rgba(209,73,157,0.05)" }}
+            className="text-white/50"
+            style={{ textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
           >
             Expo
           </span>{" "}
           <span
-            style={{ color: "rgba(1,75,126,0.5)", textShadow: "0 0 20px rgba(1,75,126,0.15), 0 0 60px rgba(1,75,126,0.05)" }}
+            className="text-black/50"
+            style={{ textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
           >
             Home
           </span>
