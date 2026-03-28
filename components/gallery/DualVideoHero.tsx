@@ -178,10 +178,17 @@ export default function DualVideoHero({
   overlayLeft,
   overlayRight,
 }: DualVideoHeroProps) {
-  const [ready, setReady] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [minTimePassed, setMinTimePassed] = useState(false);
+  const ready = videoLoaded && minTimePassed;
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMinTimePassed(true), 1800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const onVideoReady = useCallback(() => {
-    setReady(true);
+    setVideoLoaded(true);
   }, []);
 
   return (
@@ -208,10 +215,10 @@ export default function DualVideoHero({
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <motion.div
-              className="h-px bg-neutral-300"
-              initial={{ width: "24px" }}
-              animate={{ width: "30vw" }}
-              transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+              className="w-px bg-neutral-300"
+              initial={{ height: "24px" }}
+              animate={{ height: "30vh" }}
+              transition={{ duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
             />
           </motion.div>
         )}
