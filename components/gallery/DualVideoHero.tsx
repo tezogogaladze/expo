@@ -79,53 +79,6 @@ function GlassText({
   );
 }
 
-function GlassTextMobile({
-  className,
-}: {
-  className?: string;
-}) {
-  return (
-    <svg
-      className={`absolute top-0 left-0 w-full pointer-events-none select-none ${className ?? ""}`}
-      style={{ height: "calc(5rem + 12vw * 1.1)" }}
-    >
-      <defs>
-        <clipPath id="expo-text-clip-mobile">
-          <text
-            x="50%"
-            y="72%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize="12vw"
-            fontWeight="500"
-            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
-            letterSpacing="-0.025em"
-          >
-            Expo Home
-          </text>
-        </clipPath>
-      </defs>
-      <foreignObject
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-        clipPath="url(#expo-text-clip-mobile)"
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            background: "rgba(255,255,255,0.12)",
-          }}
-        />
-      </foreignObject>
-    </svg>
-  );
-}
-
 function VideoPanel({
   videoSrc,
   overlay,
@@ -276,7 +229,14 @@ export default function DualVideoHero({
           pt="6rem"
           fontSize="12vw"
         />
-        <GlassTextMobile className="md:hidden" />
+        <div className="md:hidden absolute top-0 left-0 right-0 flex items-start justify-center pt-20">
+          <h1
+            className="text-[12vw] font-medium tracking-tight text-white/20 select-none"
+            style={{ textShadow: "0 0 30px rgba(255,255,255,0.2), 0 0 80px rgba(255,255,255,0.08)" }}
+          >
+            Expo Home
+          </h1>
+        </div>
       </motion.div>
     </section>
   );
