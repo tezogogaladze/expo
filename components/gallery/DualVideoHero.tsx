@@ -136,26 +136,28 @@ export default function DualVideoHero({
       <AnimatePresence>
         {!ready && (
           <motion.div
-            className="absolute inset-0 z-30 bg-white flex items-center justify-center"
+            className="absolute inset-0 z-30 bg-white flex items-start justify-center pt-20 md:pt-24"
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none">
-              Expo Home
+            <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none flex">
+              <span className="text-right" style={{ width: "50vw", paddingRight: "0.15em" }}>Expo</span>
+              <span className="text-left" style={{ width: "50vw", paddingLeft: "0.15em" }}>Home</span>
             </h1>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Watermark — massive, stays after reveal */}
-      <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
+      <div className="absolute top-0 left-0 right-0 z-20 pointer-events-none flex items-start justify-center pt-20 md:pt-24">
         <motion.h1
-          className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-white/[0.07] select-none whitespace-nowrap"
+          className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-white/[0.07] select-none flex"
           initial={{ opacity: 0 }}
           animate={ready ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
         >
-          Expo Home
+          <span className="text-right" style={{ width: "50vw", paddingRight: "0.15em" }}>Expo</span>
+          <span className="text-left" style={{ width: "50vw", paddingLeft: "0.15em" }}>Home</span>
         </motion.h1>
       </div>
     </section>
