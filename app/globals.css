@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -11,7 +11,7 @@ html {
 body {
   background: #ffffff;
   color: #111111;
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
