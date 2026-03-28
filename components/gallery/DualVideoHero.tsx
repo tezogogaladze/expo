@@ -16,6 +16,128 @@ interface DualVideoHeroProps {
   overlayRight: VideoOverlay;
 }
 
+function GlassText({
+  className,
+  pt,
+  fontSize,
+}: {
+  className?: string;
+  pt: string;
+  fontSize: string;
+}) {
+  return (
+    <svg
+      className={`absolute top-0 left-0 w-full pointer-events-none select-none ${className ?? ""}`}
+      style={{ height: `calc(${pt} + ${fontSize} * 1.1)` }}
+    >
+      <defs>
+        <clipPath id="expo-text-clip-desktop">
+          <text
+            x="49.5%"
+            y="72%"
+            textAnchor="end"
+            dominantBaseline="middle"
+            fontSize={fontSize}
+            fontWeight="500"
+            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+            letterSpacing="-0.025em"
+          >
+            Expo
+          </text>
+          <text
+            x="97%"
+            y="72%"
+            textAnchor="end"
+            dominantBaseline="middle"
+            fontSize={fontSize}
+            fontWeight="500"
+            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+            letterSpacing="-0.025em"
+          >
+            Home
+          </text>
+        </clipPath>
+      </defs>
+      <foreignObject
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        clipPath="url(#expo-text-clip-desktop)"
+      >
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            background: "rgba(255,255,255,0.12)",
+          }}
+        />
+      </foreignObject>
+    </svg>
+  );
+}
+
+function GlassTextMobile({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      className={`absolute top-0 left-0 w-full pointer-events-none select-none ${className ?? ""}`}
+      style={{ height: "calc(5rem + 15vw * 1.1)" }}
+    >
+      <defs>
+        <clipPath id="expo-text-clip-mobile">
+          <text
+            x="49.5%"
+            y="72%"
+            textAnchor="end"
+            dominantBaseline="middle"
+            fontSize="15vw"
+            fontWeight="500"
+            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+            letterSpacing="-0.025em"
+          >
+            Expo
+          </text>
+          <text
+            x="97%"
+            y="72%"
+            textAnchor="end"
+            dominantBaseline="middle"
+            fontSize="15vw"
+            fontWeight="500"
+            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
+            letterSpacing="-0.025em"
+          >
+            Home
+          </text>
+        </clipPath>
+      </defs>
+      <foreignObject
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        clipPath="url(#expo-text-clip-mobile)"
+      >
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            background: "rgba(255,255,255,0.12)",
+          }}
+        />
+      </foreignObject>
+    </svg>
+  );
+}
+
 function VideoPanel({
   videoSrc,
   overlay,
@@ -85,6 +207,7 @@ function VideoPanel({
               ? "bg-white/90 text-neutral-900"
               : "bg-white/10 text-white"
           }`}
+          style={{ fontFamily: "var(--font-archy), sans-serif" }}
         >
           {overlay.ctaLabel}
           <svg
@@ -143,26 +266,29 @@ export default function DualVideoHero({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none flex">
-              <span className="text-right" style={{ width: "50vw", paddingRight: "0.15em" }}>Expo</span>
-              <span className="text-left" style={{ width: "50vw", paddingLeft: "0.15em" }}>Home</span>
+            <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none w-full flex justify-between px-[3%]">
+              <span className="text-right" style={{ width: "50%", paddingRight: "0.5%" }}>Expo</span>
+              <span className="text-right" style={{ width: "50%" }}>Home</span>
             </h1>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Watermark — massive, stays after reveal */}
-      <div className="absolute top-0 left-0 right-0 z-20 pointer-events-none flex items-start justify-center pt-20 md:pt-24">
-        <motion.h1
-          className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-white/[0.07] select-none flex"
-          initial={{ opacity: 0 }}
-          animate={ready ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-        >
-          <span className="text-right" style={{ width: "50vw", paddingRight: "0.15em" }}>Expo</span>
-          <span className="text-left" style={{ width: "50vw", paddingLeft: "0.15em" }}>Home</span>
-        </motion.h1>
-      </div>
+      {/* Glassmorphism text — blurs video through letter shapes */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 z-20 pointer-events-none"
+        style={{ height: "100vh" }}
+        initial={{ opacity: 0 }}
+        animate={ready ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+      >
+        <GlassText
+          className="hidden md:block"
+          pt="6rem"
+          fontSize="12vw"
+        />
+        <GlassTextMobile className="md:hidden" />
+      </motion.div>
     </section>
   );
 }
