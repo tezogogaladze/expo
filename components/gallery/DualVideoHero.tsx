@@ -67,7 +67,10 @@ function VideoPanel({
 
       <div className="absolute inset-0 bg-black/15" />
 
-      <div className="absolute top-[55%] left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center">
+      <div
+        className="absolute left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center"
+        style={{ top: "calc(50% + 1rem + 6vw)" }}
+      >
         <div className="w-full bg-white/10 backdrop-blur-md px-4 md:px-6 py-1.5">
           <h2 className="text-center text-sm md:text-base lg:text-lg font-medium text-white tracking-tight">
             {overlay.title}
