@@ -118,7 +118,7 @@ export default function DualVideoHero({
   }, []);
 
   return (
-    <section data-nav-theme="light" className="relative flex flex-col md:flex-row w-full h-[200vh] md:h-screen bg-black">
+    <section data-nav-theme="light" className="relative flex flex-col md:flex-row w-full h-[200vh] md:h-screen bg-white">
       <VideoPanel
         videoSrc={videoLeft}
         overlay={overlayLeft}
@@ -132,76 +132,32 @@ export default function DualVideoHero({
         onReady={onVideoReady}
       />
 
-      {/* Loading cover — hides staggered loading, fades out once video is ready */}
+      {/* Loading cover — white, fades out once video is ready */}
       <AnimatePresence>
         {!ready && (
           <motion.div
-            className="absolute inset-0 z-30 bg-black"
+            className="absolute inset-0 z-30 bg-white flex items-center justify-center"
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-          />
+          >
+            <h1 className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-neutral-900/10 select-none">
+              Expo Home
+            </h1>
+          </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Desktop: split across video seam */}
-      <motion.div
-        className="absolute top-24 left-0 right-0 z-20 pointer-events-none hidden md:block"
-        initial={{ opacity: 0, y: 20 }}
-        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-      >
-        <div className="flex justify-center">
-          <h1 className="text-6xl lg:text-7xl font-medium tracking-tight flex">
-            <span
-              className="text-right text-white/50"
-              style={{ width: "50vw", paddingRight: "0.15em", textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
-            >
-              Expo
-            </span>
-            <span
-              className="text-left text-black/50"
-              style={{ width: "50vw", paddingLeft: "0.15em", textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
-            >
-              Home
-            </span>
-          </h1>
-        </div>
-        <p
-          className="mt-3 text-base tracking-tight text-center text-white/75"
-          style={{ textShadow: "0 0 15px rgba(255,255,255,0.1)" }}
+      {/* Watermark — massive, stays after reveal */}
+      <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
+        <motion.h1
+          className="text-[15vw] md:text-[12vw] font-medium tracking-tight text-white/[0.07] select-none whitespace-nowrap"
+          initial={{ opacity: 0 }}
+          animate={ready ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
         >
-          Multi-Brand Furniture Store | Tbilisi, Georgia
-        </p>
-      </motion.div>
-
-      {/* Mobile: centered on first video */}
-      <motion.div
-        className="absolute top-20 left-0 right-0 z-20 pointer-events-none md:hidden"
-        initial={{ opacity: 0, y: 20 }}
-        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-      >
-        <h1 className="text-3xl font-medium tracking-tight text-center">
-          <span
-            className="text-white/50"
-            style={{ textShadow: "0 0 20px rgba(255,255,255,0.15), 0 0 60px rgba(255,255,255,0.05)" }}
-          >
-            Expo
-          </span>{" "}
-          <span
-            className="text-black/50"
-            style={{ textShadow: "0 0 20px rgba(0,0,0,0.15), 0 0 60px rgba(0,0,0,0.05)" }}
-          >
-            Home
-          </span>
-        </h1>
-        <p
-          className="mt-2 text-xs tracking-tight text-center text-white/75"
-          style={{ textShadow: "0 0 15px rgba(255,255,255,0.1)" }}
-        >
-          Multi-Brand Furniture Store | Tbilisi, Georgia
-        </p>
-      </motion.div>
+          Expo Home
+        </motion.h1>
+      </div>
     </section>
   );
 }
