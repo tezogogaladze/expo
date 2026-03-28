@@ -147,7 +147,7 @@ export default function DualVideoHero({
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.div
-              className="w-[2.5px] rounded-full"
+              className="w-[1px] rounded-full"
               initial={{
                 height: "20px",
                 backgroundColor: "rgba(0,0,0,0.12)",
