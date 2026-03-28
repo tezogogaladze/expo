@@ -174,32 +174,29 @@ export default function DualVideoHero({
         )}
       </AnimatePresence>
 
-      {/* Frosted title watermark */}
+      {/* Watermark */}
       <motion.div
         className="absolute top-0 left-0 right-0 z-20 pointer-events-none select-none"
-        style={{ height: "100vh" }}
+        style={{ height: "200vh" }}
         initial={{ opacity: 0 }}
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
       >
         {/* Desktop — split layout */}
-        <div className="hidden md:flex items-start justify-between px-[3%] pt-24">
-          <h1
-            className="text-[12vw] font-medium tracking-tight text-white/20 w-full flex justify-between"
-            style={{ textShadow: "0 0 30px rgba(255,255,255,0.2), 0 0 80px rgba(255,255,255,0.08)" }}
-          >
+        <div className="hidden md:flex items-start justify-between px-[3%] pt-24 h-screen">
+          <h1 className="text-[12vw] font-medium tracking-tight text-white/[0.07] w-full flex justify-between">
             <span className="text-right" style={{ width: "47%" }}>Expo</span>
             <span className="text-right" style={{ width: "50%" }}>Home</span>
           </h1>
         </div>
-        {/* Mobile — centered */}
-        <div className="md:hidden flex items-start justify-center pt-20">
-          <h1
-            className="text-[12vw] font-medium tracking-tight text-white/20"
-            style={{ textShadow: "0 0 30px rgba(255,255,255,0.2), 0 0 80px rgba(255,255,255,0.08)" }}
-          >
-            Expo Home
-          </h1>
+        {/* Mobile — "Expo" top-right of first video, "Home" top-right of second video */}
+        <div className="md:hidden">
+          <div className="h-screen flex items-start justify-end pr-[5%] pt-20">
+            <span className="text-[15vw] font-medium tracking-tight text-white/[0.07]">Expo</span>
+          </div>
+          <div className="h-screen flex items-start justify-end pr-[5%] pt-20">
+            <span className="text-[15vw] font-medium tracking-tight text-white/[0.07]">Home</span>
+          </div>
         </div>
       </motion.div>
     </section>
