@@ -16,69 +16,6 @@ interface DualVideoHeroProps {
   overlayRight: VideoOverlay;
 }
 
-function GlassText({
-  className,
-  pt,
-  fontSize,
-}: {
-  className?: string;
-  pt: string;
-  fontSize: string;
-}) {
-  return (
-    <svg
-      className={`absolute top-0 left-0 w-full pointer-events-none select-none ${className ?? ""}`}
-      style={{ height: `calc(${pt} + ${fontSize} * 1.1)` }}
-    >
-      <defs>
-        <clipPath id="expo-text-clip-desktop">
-          <text
-            x="47%"
-            y="72%"
-            textAnchor="end"
-            dominantBaseline="middle"
-            fontSize={fontSize}
-            fontWeight="500"
-            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
-            letterSpacing="-0.025em"
-          >
-            Expo
-          </text>
-          <text
-            x="97%"
-            y="72%"
-            textAnchor="end"
-            dominantBaseline="middle"
-            fontSize={fontSize}
-            fontWeight="500"
-            fontFamily="'Helvetica Neue', Helvetica, Arial, sans-serif"
-            letterSpacing="-0.025em"
-          >
-            Home
-          </text>
-        </clipPath>
-      </defs>
-      <foreignObject
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-        clipPath="url(#expo-text-clip-desktop)"
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            background: "rgba(255,255,255,0.12)",
-          }}
-        />
-      </foreignObject>
-    </svg>
-  );
-}
-
 function VideoPanel({
   videoSrc,
   overlay,
@@ -237,22 +174,28 @@ export default function DualVideoHero({
         )}
       </AnimatePresence>
 
-      {/* Glassmorphism text — blurs video through letter shapes */}
+      {/* Frosted title watermark */}
       <motion.div
-        className="absolute top-0 left-0 right-0 z-20 pointer-events-none"
+        className="absolute top-0 left-0 right-0 z-20 pointer-events-none select-none"
         style={{ height: "100vh" }}
         initial={{ opacity: 0 }}
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
       >
-        <GlassText
-          className="hidden md:block"
-          pt="6rem"
-          fontSize="12vw"
-        />
-        <div className="md:hidden absolute top-0 left-0 right-0 flex items-start justify-center pt-20">
+        {/* Desktop — split layout */}
+        <div className="hidden md:flex items-start justify-between px-[3%] pt-24">
           <h1
-            className="text-[12vw] font-medium tracking-tight text-white/20 select-none"
+            className="text-[12vw] font-medium tracking-tight text-white/20 w-full flex justify-between"
+            style={{ textShadow: "0 0 30px rgba(255,255,255,0.2), 0 0 80px rgba(255,255,255,0.08)" }}
+          >
+            <span className="text-right" style={{ width: "47%" }}>Expo</span>
+            <span className="text-right" style={{ width: "50%" }}>Home</span>
+          </h1>
+        </div>
+        {/* Mobile — centered */}
+        <div className="md:hidden flex items-start justify-center pt-20">
+          <h1
+            className="text-[12vw] font-medium tracking-tight text-white/20"
             style={{ textShadow: "0 0 30px rgba(255,255,255,0.2), 0 0 80px rgba(255,255,255,0.08)" }}
           >
             Expo Home
