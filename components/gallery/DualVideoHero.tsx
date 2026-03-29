@@ -183,29 +183,29 @@ export default function DualVideoHero({
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
       >
         {/* Desktop — left and right columns */}
-        <div className="hidden md:flex h-screen">
-          <div className="w-1/2 flex flex-col items-center justify-center gap-6 lg:gap-8">
-            <span className="text-white/30 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
-            <span className="text-white/30 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
-            <span className="text-white/30 text-lg lg:text-xl" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
+        <div className="hidden md:flex h-screen pt-20 lg:pt-24">
+          <div className="w-1/2 flex flex-col items-center gap-4 lg:gap-5">
+            <span className="text-white/50 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
+            <span className="text-white/50 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
+            <span className="text-white/50 text-lg lg:text-xl" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
           </div>
-          <div className="w-1/2 flex flex-col items-center justify-center gap-6 lg:gap-8">
-            <span className="text-white/30 text-2xl lg:text-3xl font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
-            <span className="text-white/30 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
-            <span className="text-white/30 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
+          <div className="w-1/2 flex flex-col items-center gap-4 lg:gap-5">
+            <span className="text-white/50 text-2xl lg:text-3xl font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
+            <span className="text-white/50 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
+            <span className="text-white/50 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
           </div>
         </div>
         {/* Mobile — 3 names per video panel, centered */}
         <div className="md:hidden">
-          <div className="h-screen flex flex-col items-center justify-center gap-5">
-            <span className="text-white/30 text-lg italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
-            <span className="text-white/30 text-lg font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
-            <span className="text-white/30 text-sm" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
+          <div className="h-screen flex flex-col items-center pt-20 gap-4">
+            <span className="text-white/50 text-lg italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
+            <span className="text-white/50 text-lg font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
+            <span className="text-white/50 text-sm" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
           </div>
-          <div className="h-screen flex flex-col items-center justify-center gap-5">
-            <span className="text-white/30 text-lg font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
-            <span className="text-white/30 text-lg font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
-            <span className="text-white/30 text-lg italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
+          <div className="h-screen flex flex-col items-center pt-20 gap-4">
+            <span className="text-white/50 text-lg font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
+            <span className="text-white/50 text-lg font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
+            <span className="text-white/50 text-lg italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
           </div>
         </div>
       </motion.div>
