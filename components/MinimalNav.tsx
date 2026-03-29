@@ -84,7 +84,7 @@ export default function MinimalNav() {
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md flex flex-col">
+        <div className="fixed inset-0 z-[60] bg-black/35 backdrop-blur-md flex flex-col">
           <div className="h-16 flex items-center justify-between px-6">
             <a
               href="/"
