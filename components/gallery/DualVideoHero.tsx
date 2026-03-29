@@ -174,7 +174,7 @@ export default function DualVideoHero({
         )}
       </AnimatePresence>
 
-      {/* Watermark */}
+      {/* Designer names */}
       <motion.div
         className="absolute top-0 left-0 right-0 z-20 pointer-events-none select-none"
         style={{ height: "200vh" }}
@@ -182,20 +182,30 @@ export default function DualVideoHero({
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
       >
-        {/* Desktop — split layout */}
-        <div className="hidden md:flex items-start justify-between px-[3%] pt-24 h-screen">
-          <h1 className="text-[12vw] font-medium tracking-tight text-white/[0.07] w-full flex justify-between">
-            <span className="text-right" style={{ width: "47%" }}>Expo</span>
-            <span className="text-right" style={{ width: "50%" }}>Home</span>
-          </h1>
-        </div>
-        {/* Mobile — "Expo" top-right of first video, "Home" top-right of second video */}
-        <div className="md:hidden">
-          <div className="h-screen flex items-start justify-end pr-[5%] pt-20">
-            <span className="text-[15vw] font-medium tracking-tight text-white/[0.07]">Expo</span>
+        {/* Desktop — left and right columns */}
+        <div className="hidden md:flex h-screen">
+          <div className="w-1/2 flex flex-col items-center justify-center gap-6 lg:gap-8">
+            <span className="text-white/30 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
+            <span className="text-white/30 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
+            <span className="text-white/30 text-lg lg:text-xl" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
           </div>
-          <div className="h-screen flex items-start justify-end pr-[5%] pt-20">
-            <span className="text-[15vw] font-medium tracking-tight text-white/[0.07]">Home</span>
+          <div className="w-1/2 flex flex-col items-center justify-center gap-6 lg:gap-8">
+            <span className="text-white/30 text-2xl lg:text-3xl font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
+            <span className="text-white/30 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
+            <span className="text-white/30 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
+          </div>
+        </div>
+        {/* Mobile — 3 names per video panel, centered */}
+        <div className="md:hidden">
+          <div className="h-screen flex flex-col items-center justify-center gap-5">
+            <span className="text-white/30 text-lg italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
+            <span className="text-white/30 text-lg font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
+            <span className="text-white/30 text-sm" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
+          </div>
+          <div className="h-screen flex flex-col items-center justify-center gap-5">
+            <span className="text-white/30 text-lg font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
+            <span className="text-white/30 text-lg font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
+            <span className="text-white/30 text-lg italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
           </div>
         </div>
       </motion.div>
