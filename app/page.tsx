@@ -67,9 +67,9 @@ export default function Home() {
             <Image
               src="/images/gallery-chrome-chairs.png"
               alt="Chrome chairs in the Expo Home showroom"
-              width={2400}
-              height={1028}
-              quality={90}
+              width={768}
+              height={1024}
+              unoptimized
               className="h-full w-full object-cover"
               sizes="100vw"
             />
