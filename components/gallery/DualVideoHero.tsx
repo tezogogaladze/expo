@@ -72,7 +72,7 @@ function VideoPanel({
 
       <div className="absolute inset-0 bg-black/15" />
 
-      <div className="absolute left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center top-[55%] md:top-[calc(50%_+_1rem_+_6vw)]">
+      <div className="absolute left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center top-[60%] md:top-[calc(50%_+_1rem_+_6vw)]">
         <div className={`w-full backdrop-blur-md px-4 md:px-6 py-1.5 transition-colors duration-300 ${hovered ? "bg-white/20" : "bg-white/10"}`}>
           <h2
             className={`text-center text-sm md:text-base lg:text-lg font-light tracking-tight transition-colors duration-300 ${hovered ? "text-white" : "text-white/70"}`}

@@ -50,7 +50,7 @@ export default function Home() {
           ctaHref: "#visit",
         }}
         overlayRight={{
-          title: "შერჩეული კოლექცია",
+          title: "რჩეული კოლექცია",
           ctaLabel: "დაათვალიერე",
           ctaHref: "#collection",
         }}
