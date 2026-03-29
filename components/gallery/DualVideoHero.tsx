@@ -21,14 +21,19 @@ function VideoPanel({
   overlay,
   preload,
   onReady,
+  hovered,
+  onHover,
+  onLeave,
 }: {
   videoSrc: string;
   overlay: VideoOverlay;
   preload: "auto" | "metadata";
   onReady?: () => void;
+  hovered: boolean;
+  onHover: () => void;
+  onLeave: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const vid = videoRef.current;
@@ -51,8 +56,8 @@ function VideoPanel({
     <a
       href={overlay.ctaHref}
       className="relative w-full md:w-1/2 h-screen md:h-full overflow-hidden block cursor-pointer"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
     >
       <video
         ref={videoRef}
@@ -68,9 +73,9 @@ function VideoPanel({
       <div className="absolute inset-0 bg-black/15" />
 
       <div className="absolute left-0 right-0 -translate-y-1/2 z-10 pointer-events-none flex items-center justify-center top-[55%] md:top-[calc(50%_+_1rem_+_6vw)]">
-        <div className="w-full bg-white/10 backdrop-blur-md px-4 md:px-6 py-1.5">
+        <div className={`w-full backdrop-blur-md px-4 md:px-6 py-1.5 transition-colors duration-300 ${hovered ? "bg-white/20" : "bg-white/10"}`}>
           <h2
-            className="text-center text-sm md:text-base lg:text-lg font-light text-white tracking-tight"
+            className={`text-center text-sm md:text-base lg:text-lg font-light tracking-tight transition-colors duration-300 ${hovered ? "text-white" : "text-white/70"}`}
             style={{ fontFamily: "var(--font-mkafio), sans-serif" }}
           >
             {overlay.title}
@@ -109,6 +114,18 @@ function VideoPanel({
   );
 }
 
+const leftDesigners = [
+  { name: "Angelo Donghia", font: "'Playfair Display', serif", className: "italic" },
+  { name: "Warren Platner", font: "'Josefin Sans', sans-serif", className: "font-light" },
+  { name: "Gerrit Rietveld", font: "'Space Mono', monospace", className: "text-lg lg:text-xl" },
+];
+
+const rightDesigners = [
+  { name: "David Nightingale Hicks", font: "'Bodoni Moda', serif", className: "italic" },
+  { name: "Terje Ekstrøm", font: "'Fredoka', sans-serif", className: "font-semibold" },
+  { name: "Pierre Paulin", font: "'Comfortaa', sans-serif", className: "font-light" },
+];
+
 export default function DualVideoHero({
   videoLeft,
   videoRight,
@@ -117,6 +134,8 @@ export default function DualVideoHero({
 }: DualVideoHeroProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [lineComplete, setLineComplete] = useState(false);
+  const [leftHovered, setLeftHovered] = useState(false);
+  const [rightHovered, setRightHovered] = useState(false);
   const ready = videoLoaded && lineComplete;
 
   const onVideoReady = useCallback(() => {
@@ -130,15 +149,21 @@ export default function DualVideoHero({
         overlay={overlayLeft}
         preload="auto"
         onReady={onVideoReady}
+        hovered={leftHovered}
+        onHover={() => setLeftHovered(true)}
+        onLeave={() => setLeftHovered(false)}
       />
       <VideoPanel
         videoSrc={videoRight}
         overlay={overlayRight}
         preload="auto"
         onReady={onVideoReady}
+        hovered={rightHovered}
+        onHover={() => setRightHovered(true)}
+        onLeave={() => setRightHovered(false)}
       />
 
-      {/* Loading cover — white with expanding vertical line */}
+      {/* Loading cover */}
       <AnimatePresence>
         {!ready && (
           <motion.div
@@ -182,30 +207,54 @@ export default function DualVideoHero({
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
       >
-        {/* Desktop — left and right columns */}
+        {/* Desktop */}
         <div className="hidden md:flex h-screen pt-20 lg:pt-24">
           <div className="w-1/2 flex flex-col items-center gap-4 lg:gap-5">
-            <span className="text-white/50 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
-            <span className="text-white/50 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
-            <span className="text-white/50 text-lg lg:text-xl" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
+            {leftDesigners.map((d) => (
+              <span
+                key={d.name}
+                className={`text-2xl lg:text-3xl transition-colors duration-300 ${d.className} ${leftHovered ? "text-white" : "text-white/50"}`}
+                style={{ fontFamily: d.font }}
+              >
+                {d.name}
+              </span>
+            ))}
           </div>
           <div className="w-1/2 flex flex-col items-center gap-4 lg:gap-5">
-            <span className="text-white/50 text-2xl lg:text-3xl font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
-            <span className="text-white/50 text-2xl lg:text-3xl font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
-            <span className="text-white/50 text-2xl lg:text-3xl italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
+            {rightDesigners.map((d) => (
+              <span
+                key={d.name}
+                className={`text-2xl lg:text-3xl transition-colors duration-300 ${d.className} ${rightHovered ? "text-white" : "text-white/50"}`}
+                style={{ fontFamily: d.font }}
+              >
+                {d.name}
+              </span>
+            ))}
           </div>
         </div>
-        {/* Mobile — 3 names per video panel, centered */}
+        {/* Mobile */}
         <div className="md:hidden">
           <div className="h-screen flex flex-col items-center pt-20 gap-4">
-            <span className="text-white/50 text-lg italic" style={{ fontFamily: "'Playfair Display', serif" }}>Angelo Donghia</span>
-            <span className="text-white/50 text-lg font-light" style={{ fontFamily: "'Josefin Sans', sans-serif" }}>Warren Platner</span>
-            <span className="text-white/50 text-sm" style={{ fontFamily: "'Space Mono', monospace" }}>Gerrit Rietveld</span>
+            {leftDesigners.map((d) => (
+              <span
+                key={d.name}
+                className={`text-lg text-white/50 ${d.className}`}
+                style={{ fontFamily: d.font }}
+              >
+                {d.name}
+              </span>
+            ))}
           </div>
           <div className="h-screen flex flex-col items-center pt-20 gap-4">
-            <span className="text-white/50 text-lg font-semibold" style={{ fontFamily: "'Fredoka', sans-serif" }}>Terje Ekstrøm</span>
-            <span className="text-white/50 text-lg font-light" style={{ fontFamily: "'Comfortaa', sans-serif" }}>Pierre Paulin</span>
-            <span className="text-white/50 text-lg italic" style={{ fontFamily: "'Bodoni Moda', serif" }}>David Nightingale Hicks</span>
+            {rightDesigners.map((d) => (
+              <span
+                key={d.name}
+                className={`text-lg text-white/50 ${d.className}`}
+                style={{ fontFamily: d.font }}
+              >
+                {d.name}
+              </span>
+            ))}
           </div>
         </div>
       </motion.div>
