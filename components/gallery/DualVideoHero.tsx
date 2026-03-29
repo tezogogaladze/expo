@@ -55,7 +55,7 @@ function VideoPanel({
   return (
     <a
       href={overlay.ctaHref}
-      className="relative w-full md:w-1/2 h-screen md:h-full overflow-hidden block cursor-pointer"
+      className="relative w-full md:w-1/2 h-[50vh] md:h-full overflow-hidden block cursor-pointer"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
@@ -83,9 +83,9 @@ function VideoPanel({
         </div>
       </div>
 
-      <div className="absolute bottom-6 md:bottom-10 lg:bottom-14 left-0 right-0 flex justify-center z-10 pointer-events-none">
+      <div className="absolute bottom-4 md:bottom-10 lg:bottom-14 left-0 right-0 flex justify-center z-10 pointer-events-none">
         <span
-          className={`inline-flex items-center justify-center gap-2 md:gap-3 px-7 md:px-12 py-1.5 md:py-2 backdrop-blur-md text-lg md:text-2xl lg:text-3xl tracking-tight transition-all duration-300 ${
+          className={`inline-flex items-center justify-center gap-2 md:gap-3 px-6 md:px-12 py-1 md:py-2 backdrop-blur-md text-base md:text-2xl lg:text-3xl tracking-tight transition-all duration-300 ${
             hovered
               ? "bg-white/90 text-neutral-900"
               : "bg-white/10 text-white"
@@ -143,7 +143,7 @@ export default function DualVideoHero({
   }, []);
 
   return (
-    <section data-nav-theme="light" className="relative flex flex-col md:flex-row w-full h-[200vh] md:h-screen bg-white">
+    <section data-nav-theme="light" className="relative flex flex-col md:flex-row w-full h-screen bg-white">
       <VideoPanel
         videoSrc={videoLeft}
         overlay={overlayLeft}
@@ -202,7 +202,7 @@ export default function DualVideoHero({
       {/* Designer names */}
       <motion.div
         className="absolute top-0 left-0 right-0 z-20 pointer-events-none select-none"
-        style={{ height: "200vh" }}
+        style={{ height: "100vh" }}
         initial={{ opacity: 0 }}
         animate={ready ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
@@ -234,22 +234,22 @@ export default function DualVideoHero({
         </div>
         {/* Mobile */}
         <div className="md:hidden">
-          <div className="h-screen flex flex-col items-center pt-20 gap-4">
+          <div className="h-[50vh] flex flex-col items-center pt-16 gap-3">
             {leftDesigners.map((d) => (
               <span
                 key={d.name}
-                className={`text-lg text-white/50 ${d.className}`}
+                className={`text-base text-white/50 ${d.className}`}
                 style={{ fontFamily: d.font }}
               >
                 {d.name}
               </span>
             ))}
           </div>
-          <div className="h-screen flex flex-col items-center pt-20 gap-4">
+          <div className="h-[50vh] flex flex-col items-center pt-16 gap-3">
             {rightDesigners.map((d) => (
               <span
                 key={d.name}
-                className={`text-lg text-white/50 ${d.className}`}
+                className={`text-base text-white/50 ${d.className}`}
                 style={{ fontFamily: d.font }}
               >
                 {d.name}
